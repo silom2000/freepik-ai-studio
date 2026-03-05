@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freepik AI Studio</title>
+  <title>Freepik AI Studio Pro</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,32 +20,43 @@
       </div>
       <div class="logo-text-wrap">
         <span class="logo-name">Freepik AI</span>
-        <span class="logo-sub">Video Studio</span>
+        <span class="logo-sub">Video & Image Studio</span>
       </div>
       <div id="apiStatus" class="api-indicator" title="API Status"></div>
     </div>
 
     <nav class="nav-section">
       <div class="nav-label">Generation Mode</div>
+      
+      <button class="nav-tab" data-tab="text2image">
+        <div class="nav-tab-icon nav-t2v" style="background:rgba(16,185,129,.1); color:#10b981">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        </div>
+        <div class="nav-tab-body"><span class="nav-tab-title">Image Gen</span><span class="nav-tab-sub">6 models</span></div>
+        <span class="nav-chip" style="color:#10b981; border-color:#10b981">IMG</span>
+      </button>
+
       <button class="nav-tab active" data-tab="text2video">
         <div class="nav-tab-icon nav-t2v">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="10" y2="18"/></svg>
         </div>
-        <div class="nav-tab-body"><span class="nav-tab-title">Text to Video</span><span class="nav-tab-sub">2 models</span></div>
+        <div class="nav-tab-body"><span class="nav-tab-title">Text to Video</span><span class="nav-tab-sub">WAN models</span></div>
         <span class="nav-chip chip-t2v">T2V</span>
       </button>
+      
       <button class="nav-tab" data-tab="text-img2video">
         <div class="nav-tab-icon nav-ti2v">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><line x1="13" y1="5" x2="21" y2="5"/><line x1="13" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="3" y1="19" x2="15" y2="19"/></svg>
         </div>
-        <div class="nav-tab-body"><span class="nav-tab-title">Text + Image to Video</span><span class="nav-tab-sub">3 models</span></div>
+        <div class="nav-tab-body"><span class="nav-tab-title">T + I to Video</span><span class="nav-tab-sub">Mixed input</span></div>
         <span class="nav-chip chip-ti2v">T+I</span>
       </button>
+      
       <button class="nav-tab" data-tab="img2video">
         <div class="nav-tab-icon nav-i2v">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
         </div>
-        <div class="nav-tab-body"><span class="nav-tab-title">Image to Video</span><span class="nav-tab-sub">8 models</span></div>
+        <div class="nav-tab-body"><span class="nav-tab-title">Image to Video</span><span class="nav-tab-sub">Kling & others</span></div>
         <span class="nav-chip chip-i2v">I2V</span>
       </button>
     </nav>
@@ -55,128 +66,67 @@
     <div class="control-group">
       <div class="control-label">Test Mode</div>
       <div class="mode-toggle">
-        <button class="mode-btn active" data-mode="single">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg>Single
-        </button>
-        <button class="mode-btn" data-mode="comparison">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Compare All
-        </button>
+        <button class="mode-btn active" data-mode="single"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg>Single</button>
+        <button class="mode-btn" data-mode="comparison"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Compare</button>
       </div>
     </div>
 
     <div class="control-group" id="modelSelectionGroup">
       <div class="control-label">Model</div>
       <select id="modelSelect" class="s-select"></select>
-      <div id="modelInfo" class="free-badge hidden">
-        <span class="free-pill">FREE</span>
-        <span id="freeLimitText">5 requests / day</span>
-      </div>
+      <div id="modelInfo" class="free-badge hidden"><span class="free-pill">FREE</span><span id="freeLimitText">-</span></div>
     </div>
 
     <div class="control-group hidden" id="imageUploadGroup">
       <div class="control-label">Source Image</div>
       <div class="upload-zone" id="imageUploadArea">
         <div class="upload-idle" id="uploadIdle">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-          <p>Click to upload</p><small>JPG, PNG, WebP</small>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+          <p>Click to upload</p>
         </div>
-        <img id="imagePreview" class="img-thumb hidden" alt="Preview"/>
+        <img id="imagePreview" class="img-thumb hidden"/>
       </div>
     </div>
 
     <div class="control-group" id="textPromptGroup">
       <div class="control-label">Prompt</div>
-      <textarea id="textPrompt" class="s-textarea" rows="4" placeholder="Describe the video you want to generate..."></textarea>
+      <textarea id="textPrompt" class="s-textarea" rows="4" placeholder="Describe what to generate..."></textarea>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" id="paramsGroup">
       <div class="control-label">Parameters</div>
       <div class="params-row">
-        <div class="param-col">
-          <label class="param-lbl">Duration (s)</label>
-          <input type="number" id="duration" class="s-input" min="5" max="15" value="10"/>
-        </div>
-        <div class="param-col">
-          <label class="param-lbl">Aspect Ratio</label>
-          <select id="aspectRatio" class="s-select">
-            <option value="16:9">16:9</option>
-            <option value="9:16">9:16</option>
-            <option value="1:1">1:1</option>
-          </select>
-        </div>
-      </div>
-      <div style="margin-top:10px">
-        <label class="param-lbl">Motion Prompt <span style="opacity:.45;font-weight:400">(optional)</span></label>
-        <input type="text" id="motionPrompt" class="s-input" placeholder="Describe desired motion..."/>
+        <div class="param-col"><label class="param-lbl">Duration/Steps</label><input type="number" id="duration" class="s-input" value="5"/></div>
+        <div class="param-col"><label class="param-lbl">Aspect Ratio</label><select id="aspectRatio" class="s-select"><option value="16:9">16:9</option><option value="9:16">9:16</option><option value="1:1">1:1</option></select></div>
       </div>
     </div>
 
     <div class="sidebar-footer">
-      <div id="progressSection" class="progress-wrap hidden">
-        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-        <p id="progressText" class="progress-lbl">Initializing...</p>
-      </div>
+      <div id="progressSection" class="progress-wrap hidden"><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><p id="progressText" class="progress-lbl">Starting...</p></div>
       <div class="action-row">
-        <button id="generateBtn" class="btn-generate">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>Generate Video
-        </button>
-        <button id="stopBtn" class="btn-stop hidden">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Stop
-        </button>
+        <button id="generateBtn" class="btn-generate"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>Generate</button>
+        <button id="stopBtn" class="btn-stop hidden"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Stop</button>
       </div>
     </div>
   </aside>
 
   <main class="main-area">
     <header class="topbar">
-      <div class="topbar-left">
-        <h1 class="page-title" id="pageTitle">Text to Video</h1>
-        <p class="page-desc" id="pageDesc">Generate videos purely from a text prompt</p>
-      </div>
-      <div class="topbar-right">
-        <button id="historyBtn" class="btn-ghost">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>History
-        </button>
-      </div>
+      <div class="topbar-left"><h1 class="page-title" id="pageTitle">AI Studio</h1><p class="page-desc" id="pageDesc">Select a mode to begin</p></div>
+      <button id="historyBtn" class="btn-ghost"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>History</button>
     </header>
-
     <div class="model-cards-grid" id="modelsOverview"></div>
-
     <section class="results-section">
-      <div class="results-topbar">
-        <h2 class="results-heading">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Results
-        </h2>
-      </div>
       <div id="resultsContainer" class="results-container">
-        <div class="empty-state">
-          <div class="empty-icon-wrap">
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-          </div>
-          <p>No results yet</p>
-          <small>Configure your settings and hit Generate</small>
-        </div>
+        <div class="empty-state">...</div>
       </div>
     </section>
-
-    <section class="logs-section" id="logsPanel">
+    <section class="logs-section collapsed" id="logsPanel">
       <div class="logs-topbar" id="logsHeader">
-        <div class="logs-title-row">
-          <span class="logs-live-dot"></span>
-          <h3>API Logs</h3>
-        </div>
-        <div class="logs-controls">
-          <button id="clearLogsBtn" class="btn-icon-xs" title="Clear logs">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 5,6 21,6"/><path d="M19,6l-1,14a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2L5,6m3,0V4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v2"/></svg>
-          </button>
-          <button id="toggleLogsBtn" class="btn-icon-xs" title="Toggle">
-            <svg id="toggleIcon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18,15 12,9 6,15"/></svg>
-          </button>
-        </div>
+        <div class="logs-title-row"><span class="logs-live-dot"></span><h3>API Logs</h3></div>
+        <div class="logs-controls"><button id="clearLogsBtn" class="btn-icon-xs">🗑</button><button id="toggleLogsBtn" class="btn-icon-xs">▲</button></div>
       </div>
-      <div class="logs-body" id="logsContent">
-        <div class="log-entry info"><span class="log-ts">--:--:--</span><span class="log-msg">Ready to capture logs...</span></div>
-      </div>
+      <div class="logs-body" id="logsContent"></div>
     </section>
   </main>
 </div>
