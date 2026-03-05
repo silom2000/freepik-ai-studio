@@ -1,0 +1,212 @@
+{
+    "project": "Freepik Video Generation Tester",
+    "version": "1.0.3",
+    "documentation_type": "API Model Configuration & Testing Reference",
+    "base_url": "https://api.freepik.com/v1",
+    "auth_header": "x-freepik-api-key",
+    "models": {
+        "kling_v2_6_pro": {
+            "id": "kling-v2-6-pro",
+            "name": "Kling 2.6 Pro",
+            "endpoints": {
+                "create": "/ai/image-to-video/kling-v2-6-pro",
+                "get": "/ai/image-to-video/kling-v2-6-pro"
+            },
+            "payload_type": "JSON",
+            "image_field": "image",
+            "supported_inputs": [
+                "image"
+            ],
+            "parameters": {
+                "duration": "string ('5' or '10')",
+                "aspect_ratio": "string ('16:9', '9:16', '1:1')"
+            }
+        },
+        "kling_v2_1_pro": {
+            "id": "kling-v2-1-pro",
+            "name": "Kling 2.1 Pro",
+            "endpoints": {
+                "create": "/ai/image-to-video/kling-v2-1-pro",
+                "get": "/ai/image-to-video/kling-v2-1"
+            },
+            "payload_type": "JSON",
+            "image_field": "image",
+            "supported_inputs": [
+                "text",
+                "image"
+            ],
+            "parameters": {
+                "duration": "string ('5' or '10')",
+                "aspect_ratio": "string ('16:9', '9:16', '1:1')"
+            }
+        },
+        "kling_v2": {
+            "id": "kling-v2",
+            "name": "Kling 2.0",
+            "endpoints": {
+                "create": "/ai/image-to-video/kling-v2",
+                "get": "/ai/image-to-video/kling-v2"
+            },
+            "payload_type": "JSON",
+            "image_field": "image",
+            "supported_inputs": [
+                "image"
+            ],
+            "parameters": {
+                "duration": "default 5s"
+            }
+        },
+        "kling_o1_pro": {
+            "id": "kling-o1-pro",
+            "name": "Kling O1 Pro",
+            "endpoints": {
+                "create": "/ai/image-to-video/kling-o1-pro",
+                "get": "/ai/image-to-video/kling-o1"
+            },
+            "payload_type": "JSON",
+            "image_field": "first_frame",
+            "supported_inputs": [
+                "image"
+            ],
+            "parameters": {
+                "duration": "string ('5' or '10')",
+                "aspect_ratio": "string ('16:9', '9:16', '1:1')"
+            }
+        },
+        "kling_o1_std": {
+            "id": "kling-o1-std",
+            "name": "Kling O1 Standard",
+            "endpoints": {
+                "create": "/ai/image-to-video/kling-o1-std",
+                "get": "/ai/image-to-video/kling-o1"
+            },
+            "payload_type": "JSON",
+            "image_field": "first_frame",
+            "supported_inputs": [
+                "image"
+            ]
+        },
+        "wan_2_6_i2v": {
+            "ids": [
+                "wan-i2v-720p",
+                "wan-i2v-1080p"
+            ],
+            "name": "WAN 2.6 Image-to-Video",
+            "endpoints": {
+                "create": "/ai/image-to-video/wan-v2-6-{res}",
+                "get": "/ai/image-to-video/wan-v2-6-{res}"
+            },
+            "payload_type": "JSON",
+            "image_field": "image",
+            "parameters": {
+                "duration": "string ('5', '10', '15')"
+            }
+        },
+        "wan_2_5_i2v": {
+            "id": "wan-2-5-i2v-720p",
+            "name": "WAN 2.5 Image-to-Video 720p",
+            "endpoints": {
+                "create": "/ai/image-to-video/wan-2-5-i2v-720p",
+                "get": "/ai/image-to-video/wan-2-5-i2v-720p"
+            },
+            "payload_type": "JSON",
+            "image_field": "image",
+            "parameters": {
+                "duration": "string ('5', '10')"
+            }
+        },
+        "wan_2_6_t2v": {
+            "ids": [
+                "wan-t2v-720p",
+                "wan-t2v-1080p"
+            ],
+            "name": "WAN 2.6 Text-to-Video",
+            "endpoints": {
+                "create": "/ai/text-to-video/wan-v2-6-{res}",
+                "get": "/ai/text-to-video/wan-v2-6-{res}"
+            },
+            "payload_type": "JSON",
+            "parameters": {
+                "duration": "string ('5', '10', '15')"
+            }
+        },
+        "minimax_hailuo_2_3": {
+            "id": "minimax-hailuo-2-3-1080p",
+            "name": "MiniMax Hailuo 2.3",
+            "endpoints": {
+                "create": "/ai/image-to-video/minimax-hailuo-2-3-1080p",
+                "get": "/ai/image-to-video/minimax-hailuo-2-3-1080p"
+            },
+            "payload_type": "JSON",
+            "image_field": "first_frame_image",
+            "fixed_parameters": {
+                "duration": 6,
+                "prompt_optimizer": true
+            },
+            "unsupported_parameters": [
+                "aspect_ratio"
+            ]
+        },
+        "ltx_video_2_pro": {
+            "id": "ltx-video-2-pro",
+            "name": "LTX Video 2.0 Pro",
+            "endpoints": {
+                "create": "/ai/image-to-video/ltx-2-pro",
+                "get": "/ai/image-to-video/ltx-2-pro"
+            },
+            "payload_type": "JSON",
+            "special_requirements": "Requires public Image URL (ImgBB used as proxy)",
+            "image_field": "image_url",
+            "parameters": {
+                "resolution": "string ('1080p', '1440p', '2160p')",
+                "fps": "int (25, 50)",
+                "duration": "int (6, 8, 10)",
+                "seed": "int",
+                "generate_audio": "boolean"
+            }
+        },
+        "pixverse_v5": {
+            "id": "pixverse-v5",
+            "name": "PixVerse V5",
+            "endpoints": {
+                "create": "/ai/image-to-video/pixverse-v5",
+                "get": "/ai/image-to-video/pixverse-v5"
+            },
+            "payload_type": "JSON",
+            "special_requirements": "Requires public Image URL (ImgBB used as proxy)",
+            "image_field": "image_url",
+            "parameters": {
+                "resolution": "string ('360p', '540p', '720p', '1080p')",
+                "aspect_ratio": "mapped from UI (16:9 -> widescreen_16_9, etc.)",
+                "duration": "int (5, 8)",
+                "style": "string ('anime', '3d_animation', 'clay', 'cyberpunk', 'comic')",
+                "seed": "int"
+            }
+        }
+    },
+    "testing_notes": [
+        "All modern Freepik AI Video endpoints use application/json.",
+        "MiniMax models REJECT requests if 'aspect_ratio' is present in payload.",
+        "MiniMax Hailuo 2.3 uses 'first_frame_image' and 'prompt_optimizer: true'.",
+        "Kling 2.1 Pro polling endpoint differs from creation endpoint (/kling-v2-1).",
+        "Base64 images must be prefixed with 'data:image/jpeg;base64,' for JSON payloads.",
+        "Large base64 strings in logs are truncated to 500 characters to ensure stability.",
+        "PixVerse V5 requires a public image URL (image_url field). Uses ImgBB as proxy like LTX.",
+        "PixVerse V5: 1080p videos limited to 5s max. Duration options: 5 or 8. Supports styles: anime, 3d_animation, clay, cyberpunk, comic."
+    ],
+    "example_curl": {
+        "model": "minimax-hailuo-2-3-1080p",
+        "url": "https://api.freepik.com/v1/ai/image-to-video/minimax-hailuo-2-3-1080p",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "x-freepik-api-key": "<api-key>"
+        },
+        "data": {
+            "prompt": "A beautiful sunset over the mountains with birds flying in the sky",
+            "first_frame_image": "URL_OR_BASE64",
+            "duration": 6,
+            "prompt_optimizer": true
+        }
+    }
+}
